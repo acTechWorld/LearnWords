@@ -109,15 +109,15 @@ class AddWordPopupAuto : AppCompatActivity() {
                             for (i in 0..4){
                                 listWordProposition.add(listWordPreposition[i])
                             }
-                            frenchWordAuto.text = listWordProposition[0].french_word
-                            englishWordAuto.text = listWordProposition[0].english_word
+                            wordSection1.text = listWordProposition[0].french_word
+                            wordSection2.text = listWordProposition[0].english_word
                         }
                         if(listWordPreposition.size>0 && listWordPreposition.size<5){
                             for (i in 0..listWordPreposition.size-1){
                                 listWordProposition.add(listWordPreposition[i])
                             }
-                            frenchWordAuto.text = listWordProposition[0].french_word
-                            englishWordAuto.text = listWordProposition[0].english_word
+                            wordSection1.text = listWordProposition[0].french_word
+                            wordSection2.text = listWordProposition[0].english_word
                         }
                         if (listWordPreposition.size == 0){
                             noWordsMessage()
@@ -158,8 +158,8 @@ class AddWordPopupAuto : AppCompatActivity() {
                 file.writeText(jsonString)
                 sharedPreferences.edit().putString("jsonString", jsonString).apply()
                 listWordProposition.removeAt(0)
-                frenchWordAuto.text = listWordProposition[0].french_word
-                englishWordAuto.text = listWordProposition[0].english_word
+                wordSection1.text = listWordProposition[0].french_word
+                wordSection2.text = listWordProposition[0].english_word
                 index = index+1
                 tvIndex.text = index.toString()+"/5"
             }
@@ -171,8 +171,8 @@ class AddWordPopupAuto : AppCompatActivity() {
             }
             if (listWordProposition.size > 1){
                 listWordProposition.removeAt(0)
-                frenchWordAuto.text = listWordProposition[0].french_word
-                englishWordAuto.text = listWordProposition[0].english_word
+                wordSection1.text = listWordProposition[0].french_word
+                wordSection2.text = listWordProposition[0].english_word
                 index = index+1
                 tvIndex.text = index.toString()+"/5"
             }
