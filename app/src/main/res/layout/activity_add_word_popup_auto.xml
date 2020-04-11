@@ -75,7 +75,7 @@
                     android:text="Mot en francais :"
                     android:textSize="20sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/wordSection1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                     android:text="Traduction en anglais :"
                     android:textSize="20sp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/wordSection2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

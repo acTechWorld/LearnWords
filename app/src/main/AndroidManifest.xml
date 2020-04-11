@@ -11,47 +11,55 @@
         android:roundIcon="@drawable/duck_white_circle"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.perso.learnwords.OralTraductionGame"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
-        <activity android:name="com.perso.learnwords.OralTraductionMenu"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
+        <activity android:name=".UpdatePage"></activity>
         <activity
-            android:name="com.perso.learnwords.AddWordPopupAuto"
-            android:theme="@style/AppTheme.Popup"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
-        <activity android:name="com.perso.learnwords.ScoreTraductionGame"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
+            android:name=".OralTraductionGame"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.perso.learnwords.EditWordPopup"
-            android:theme="@style/AppTheme.Popup"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
+            android:name=".OralTraductionMenu"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.perso.learnwords.AddWordPopupManual"
-            android:theme="@style/AppTheme.Popup"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
+            android:name=".AddWordPopupAuto"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Popup" />
         <activity
-            android:name="com.perso.learnwords.AddWordPopupMenu"
-            android:theme="@style/AppTheme.Popup"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
-        <activity android:name="com.perso.learnwords.TraductionGame"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
-        <activity android:name="com.perso.learnwords.TraductionMenu"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
-        <activity android:name="com.perso.learnwords.ReviseMenu"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait"/>
-        <activity android:name="com.perso.learnwords.MainActivity"
-            android:configChanges = "orientation"
-            android:screenOrientation = "portrait">
+            android:name=".ScoreTraductionGame"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditWordPopup"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Popup" />
+        <activity
+            android:name=".AddWordPopupManual"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Popup" />
+        <activity
+            android:name=".AddWordPopupMenu"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Popup" />
+        <activity
+            android:name=".TraductionGame"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TraductionMenu"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReviseMenu"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,12 +5,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,25 +22,36 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
 import java.lang.Exception
-import kotlinx.android.synthetic.main.activity_main.homeButton
-import java.util.*
+import kotlinx.android.synthetic.main.header.*
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    public lateinit var drawer : DrawerLayout
+    public lateinit var navMenu : NavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         groupDeleteSectionVar = groupDeleteSection
         closeGroupDeleteSectionButtonVar = closeGroupDeleteSectionButton
         groupDeleteButtonVar = groupDeleteButton
+
+        drawer = this.findViewById(R.id.menuDrawer)
+        navMenu = this.findViewById(R.id.navMenu)
+        navMenu.setNavigationItemSelectedListener(this)
+
+        //insert Page title in header
+        titlePage.text = "Mon Dictionnaire"
+
         init()
 
         reviseWordButton.setOnClickListener(){
             var intent = Intent(applicationContext, ReviseMenu().javaClass)
             startActivity(intent)
         }
+
 
         addWordButton.setOnClickListener(){
             var intent = Intent(applicationContext, AddWordPopupMenu().javaClass)
@@ -47,6 +62,12 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(applicationContext, MainActivity().javaClass)
             startActivity(intent)
         }
+
+        menuButton.setOnClickListener(){
+            drawer.openDrawer(GravityCompat.START, true)
+        }
+
+
 
 
 
@@ -154,6 +175,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.reviseWords -> {
+                var intent = Intent(applicationContext, ReviseMenu().javaClass)
+                startActivity(intent)
+            }
+            R.id.backups -> {
+                var intent = Intent(applicationContext, UpdatePage().javaClass)
+                startActivity(intent)
+            }
+        }
+        drawer.closeDrawer(GravityCompat.START, true)
+        return true
+    }
+
 
     companion object{
         var firstLongClick = 0
@@ -163,6 +199,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var groupDeleteButtonVar : TextView
 
     }
+
 
 
 }

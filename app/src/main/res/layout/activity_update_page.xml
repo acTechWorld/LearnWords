@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menuDrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".UpdatePage">
+
+        <include
+            layout="@layout/header" >
+        </include>
+
+        <Button
+            android:id="@+id/addUpdateButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Ajouter une sauvegarde"
+            android:textAlignment="center" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/updateListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <!-- Reveal menu section -->
+    <com.google.android.material.navigation.NavigationView
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:menu="@menu/ressource_menu"
+    android:layout_gravity="start"
+    android:id="@+id/navMenu">
+
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>

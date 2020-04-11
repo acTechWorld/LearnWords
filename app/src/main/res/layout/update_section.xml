@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/border_background"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/updateDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="2"
+        android:text="TextView"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/nbWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="2.6"
+        android:text="TextView"
+        android:textSize="18dp" />
+
+    <ImageButton
+        android:id="@+id/updateButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="0"
+        android:background="@drawable/start_icon"
+        android:scaleType="fitXY" />
+
+</LinearLayout>
