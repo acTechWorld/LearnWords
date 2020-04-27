@@ -123,6 +123,7 @@ class EditWordPopup : AppCompatActivity() {
             var jsonString = sharedPreferences.getString("jsonString", "")
             var jsonObj = gson.parse(jsonString)
 
+
             var jsonObjectEdited = JsonObject()
             if (wordInputSection1Edit != null && wordInputSection2Edit != null) {
                 if (mode == 0){
@@ -136,6 +137,9 @@ class EditWordPopup : AppCompatActivity() {
                     jsonObjectEdited.addProperty("checked", false)
                 }
             }
+
+
+
             jsonObj.asJsonArray.set(position, jsonObjectEdited)
             var newJsonString = Gson().toJson(jsonObj)
             val file = File("/data/user/0/com.perso.learnwords/files/words.json")

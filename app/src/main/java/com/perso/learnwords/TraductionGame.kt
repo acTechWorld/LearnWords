@@ -20,8 +20,10 @@ class TraductionGame() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_traduction_game_reveal)
+
+        //Var to know if it is french to english or english to french game
         var mode = intent.getIntExtra("mode", 0)
-        System.out.println(mode)
+
         var isRestart = intent.getIntExtra("restart",0)
         var listWordError = ArrayList<Word>()
 

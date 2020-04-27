@@ -54,35 +54,58 @@
         android:layout_marginBottom="10dp"
         android:text="Sélection aléatoire" />
 
-    <RadioGroup
-        android:id="@+id/nbWordsRadioButtons"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="40dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border_background"
+        android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/radioButton1"
-            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
-            android:layout_width="135dp"
+        <ToggleButton
+            android:id="@+id/toggleButtonLanguage"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:checked="true"
-            android:text="30" />
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:checked="false"
+            android:text="French traduction"
+            android:textOff="Français -> Anglais"
+            android:textOn="Anglais -> Français" />
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="135dp"
+        <RadioGroup
+            android:id="@+id/nbWordsRadioButtons"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50" />
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:text="100" />
+            <RadioButton
+                android:id="@+id/radioButton1"
+                style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:checked="true"
+                android:text="30" />
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="50" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:text="100" />
+
+        </RadioGroup>
+    </LinearLayout>
 
     <Button
         android:id="@+id/allWordsButton"

@@ -25,10 +25,10 @@ class TraductionMenu : AppCompatActivity() {
 
         toggleButtonLanguage.setOnCheckedChangeListener{_, isChecked ->
             if (isChecked) {
-                // The toggle is enabled
+                // The toggle is enabled French to English mode
                 toggleMode = 1
             } else {
-                // The toggle is disabled
+                // The toggle is disabled English to french mode
                 toggleMode = 0
             }
         }

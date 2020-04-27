@@ -15,7 +15,9 @@ import com.perso.learnwords.MainActivity.Companion.selectedItemCounter
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.word_section.view.*
+import java.io.BufferedReader
 import java.io.File
+import java.io.InputStreamReader
 
 class WordSectionAdapter(val listWord: ArrayList<Word>, val context: Context) :
     RecyclerView.Adapter<WordSectionAdapter.ViewHolder>() {
@@ -47,6 +49,20 @@ class WordSectionAdapter(val listWord: ArrayList<Word>, val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.english_word.text = listWord[position].english_word
         holder.itemView.french_word.text = listWord[position].french_word
+        var truePosi = position
+        var gson = Gson()
+        val jsonString = BufferedReader(InputStreamReader(context.openFileInput("words.json"),"UTF-8")).use { it.readText()}
+        //Save SaredPref the jsonString
+        val sharedPreferences = context.getSharedPreferences("main",  Context.MODE_PRIVATE)
+        sharedPreferences.edit().putString("jsonString", jsonString).apply()
+        var arrayWords = gson.fromJson(jsonString, Array<Word>::class.java).toCollection(ArrayList())
+
+        //Find the true position of the list (if there are some researches with the searchBar)
+        for (word in arrayWords){
+            if (word.french_word == listWord[position].french_word && word.english_word == listWord[position].english_word){
+                truePosi = arrayWords.indexOf(word)
+            }
+        }
 
         //Adapt layout wether or not case is checked
         if (listWord[position].checked){
@@ -129,7 +145,7 @@ class WordSectionAdapter(val listWord: ArrayList<Word>, val context: Context) :
                 val sharedPreferences = context.getSharedPreferences("main",  Context.MODE_PRIVATE)
                 var jsonString = sharedPreferences.getString("jsonString", "")
                 var jsonObj = gsonParser.parse(jsonString)
-                jsonObj.asJsonArray.remove(position)
+                jsonObj.asJsonArray.remove(truePosi)
                 var newJsonString = Gson().toJson(jsonObj)
                 val file = File("/data/user/0/com.perso.learnwords/files/words.json")
                 listWord.removeAt(position)
@@ -169,11 +185,15 @@ class WordSectionAdapter(val listWord: ArrayList<Word>, val context: Context) :
                 groupDeleteButton.text = "sélectionner"
             }
             var intent = Intent(context, EditWordPopup().javaClass)
-            intent.putExtra("position", position)
+
+
+
+            intent.putExtra("position", truePosi)
             intent.putExtra("french_word", listWord[position].french_word)
             intent.putExtra("english_word", listWord[position].english_word)
             context.startActivity(intent)
         }
+
     }
 
 

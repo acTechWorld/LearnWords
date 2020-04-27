@@ -21,6 +21,19 @@ class OralTraductionMenu : AppCompatActivity() {
         var jsonString = sharedPreferences.getString("jsonString", "")
         listWords = gson.fromJson(jsonString, Array<Word>::class.java)
 
+
+        var toggleMode = 0
+
+        toggleButtonLanguage.setOnCheckedChangeListener{_, isChecked ->
+            if (isChecked) {
+                // The toggle is enabled French to English mode
+                toggleMode = 1
+            } else {
+                // The toggle is disabled English to french mode
+                toggleMode = 0
+            }
+        }
+
         lastCreatedWordsButton.setOnClickListener(){
             var id = nbWordsRadioButtons.checkedRadioButtonId
             var radioButton = findViewById<RadioButton>(id)
@@ -41,6 +54,7 @@ class OralTraductionMenu : AppCompatActivity() {
                 }
                 listWordsToShow.shuffle()
                 var intent = Intent(applicationContext, OralTraductionGame().javaClass)
+                intent.putExtra("mode", toggleMode)
                 startActivity(intent)
             }else{
                 val b = AlertDialog.Builder(this)
@@ -91,6 +105,7 @@ class OralTraductionMenu : AppCompatActivity() {
                     }
                 }
                 var intent = Intent(applicationContext, OralTraductionGame().javaClass)
+                intent.putExtra("mode", toggleMode)
                 startActivity(intent)
             }else{
                 val b = AlertDialog.Builder(this)
@@ -115,6 +130,7 @@ class OralTraductionMenu : AppCompatActivity() {
                 }
                 listWordsToShow.shuffle()
                 var intent = Intent(applicationContext, OralTraductionGame().javaClass)
+                intent.putExtra("mode", toggleMode)
                 startActivity(intent)
             }else{
                 val b = AlertDialog.Builder(this)

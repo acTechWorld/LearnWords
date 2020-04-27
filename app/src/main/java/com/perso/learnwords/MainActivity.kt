@@ -2,15 +2,16 @@ package com.perso.learnwords
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,22 +19,21 @@ import com.google.android.material.navigation.NavigationView
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.header.*
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
-import java.lang.Exception
-import kotlinx.android.synthetic.main.header.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    public lateinit var drawer : DrawerLayout
-    public lateinit var navMenu : NavigationView
+    lateinit var drawer : DrawerLayout
+    lateinit var navMenu : NavigationView
+    lateinit var arrayWords : ArrayList<Word>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        var context = this
         groupDeleteSectionVar = groupDeleteSection
         closeGroupDeleteSectionButtonVar = closeGroupDeleteSectionButton
         groupDeleteButtonVar = groupDeleteButton
@@ -67,9 +67,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawer.openDrawer(GravityCompat.START, true)
         }
 
+        upButton.setOnClickListener(){
+            list_words.scrollToPosition(0)
+        }
 
+        downButton.setOnClickListener(){
+            list_words.scrollToPosition(list_words.adapter!!.itemCount -1)
+        }
+        //Looking for action on the searchBar
+        searchBar.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(s: String): Boolean {
+                return false
+            }
 
-
+            override fun onQueryTextChange(s: String): Boolean {
+                var ArrayWordReduced = ArrayList<Word>()
+                if (s.length != 0) {
+                   for (word in arrayWords){
+                       if(word.french_word.contains(s) || word.english_word.contains(s)){
+                           ArrayWordReduced.add(word)
+                       }
+                   }
+                    list_words.adapter = WordSectionAdapter(ArrayWordReduced, context)
+                    return true
+                }else{
+                    list_words.adapter = WordSectionAdapter(arrayWords, context)
+                }
+                return false
+            }
+        })
 
 
     }
@@ -82,7 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //Save SaredPref the jsonString
             val sharedPreferences = applicationContext.getSharedPreferences("main",  Context.MODE_PRIVATE)
             sharedPreferences.edit().putString("jsonString", jsonString).apply()
-            var arrayWords : ArrayList<Word> = gson.fromJson(jsonString, Array<Word>::class.java).toCollection(ArrayList())
+            arrayWords = gson.fromJson(jsonString, Array<Word>::class.java).toCollection(ArrayList())
             list_words.layoutManager = LinearLayoutManager(this)
             list_words.adapter = WordSectionAdapter(arrayWords, this)
 
