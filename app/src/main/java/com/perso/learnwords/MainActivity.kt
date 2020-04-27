@@ -112,7 +112,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             arrayWords = gson.fromJson(jsonString, Array<Word>::class.java).toCollection(ArrayList())
             list_words.layoutManager = LinearLayoutManager(this)
             list_words.adapter = WordSectionAdapter(arrayWords, this)
-
+            list_words.scrollToPosition(currentWordPosition)
+            currentWordPosition = 0
             nbWords.text = arrayWords.size.toString() +"mots"
 
             //Close groupDeleteSection and delete selected words from local list
@@ -224,6 +225,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         lateinit var groupDeleteSectionVar : LinearLayout
         lateinit var closeGroupDeleteSectionButtonVar : ImageButton
         lateinit var groupDeleteButtonVar : TextView
+        var currentWordPosition = 0
 
     }
 

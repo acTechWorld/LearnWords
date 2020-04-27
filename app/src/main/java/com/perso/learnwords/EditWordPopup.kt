@@ -144,6 +144,7 @@ class EditWordPopup : AppCompatActivity() {
             var newJsonString = Gson().toJson(jsonObj)
             val file = File("/data/user/0/com.perso.learnwords/files/words.json")
             file.writeText(newJsonString)
+            MainActivity.currentWordPosition = position
             this.finish()
         }
 
@@ -177,6 +178,7 @@ class EditWordPopup : AppCompatActivity() {
         }
 
         backButton.setOnClickListener(){
+            MainActivity.currentWordPosition = position
             this.finish()
         }
     }

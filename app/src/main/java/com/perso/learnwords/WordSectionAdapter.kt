@@ -152,11 +152,14 @@ class WordSectionAdapter(val listWord: ArrayList<Word>, val context: Context) :
                 file.writeText(newJsonString)
                 notifyItemRemoved(position)
                 notifyItemRangeRemoved(position, listWord.size)
+                MainActivity.currentWordPosition = position
                 sharedPreferences.edit().putString("jsonString", newJsonString).apply()
             }
             b.setNegativeButton(
                 "Non"
-            ) { dialog, which -> dialog.dismiss() }
+            ) { dialog, which ->
+                MainActivity.currentWordPosition = position
+                dialog.dismiss() }
             b.show()
         }
 
